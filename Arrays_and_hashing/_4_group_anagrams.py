@@ -27,32 +27,59 @@ strs[i] consists of lowercase English letters.
 """
 
 
-class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        res = {}
-        for w in strs:
-            count = [0]*26
-            for l in w:
-                count[ord(l)-ord("a")] += 1
-            res.setdefault(tuple(count),[])
-            res[tuple(count)].append(w)
-        return res.values()
+# class Solution:
+#     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+#         res = {}
+#         for w in strs:
+#             count = [0]*26
+#             for l in w:
+#                 count[ord(l)-ord("a")] += 1
+#             res.setdefault(tuple(count),[])
+#             res[tuple(count)].append(w)
+#         return res.values()
+#
+#
+# class Solution:
+#
+#     def sorti(self, strs):
+#         newstrs = ""
+#         strs2 = sorted(strs)
+#         for i in strs2:
+#             newstrs = newstrs + i
+#         return newstrs
+#
+#     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+#         res = {}
+#         for i in strs:
+#             newi = self.sorti(i)
+#             res.setdefault(newi, [])
+#             res[newi].append(i)
+#
+#         return res.values()
 
 
-class Solution:
 
-    def sorti(self, strs):
-        newstrs = ""
-        strs2 = sorted(strs)
-        for i in strs2:
-            newstrs = newstrs + i
-        return newstrs
 
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        res = {}
-        for i in strs:
-            newi = self.sorti(i)
-            res.setdefault(newi, [])
-            res[newi].append(i)
+#errored
+def ord_calc(s):
+    res = 0
 
-        return res.values()
+    for ele in s:
+        res = res + ord(ele)
+    return res
+
+def groupAnagrams(strs):
+    d = {}
+
+    for ele in strs:
+        key1 = ord_calc(ele)
+        val1 = ele
+        if key1 in d:
+            d[key1].append(val1)
+        else:
+            d[key1] = [val1]
+
+    return d.values()
+
+
+print(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
