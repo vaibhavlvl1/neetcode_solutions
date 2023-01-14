@@ -86,3 +86,6 @@ class Solution:
 
             j = j - 1
         return res
+
+
+# using heaps 
