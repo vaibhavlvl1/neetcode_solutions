@@ -29,63 +29,106 @@ Follow up: Your algorithm's time complexity must be better than O(n log n), wher
 """
 
 
-class Solution:
-    def topKFrequent(self, arr: List[int], k: int) -> List[int]:
-        d = {}
-        res = []
-        for ele in arr:
-            d[ele] = d.get(ele,0)+1
-        print(d)
-        max = 0
-        for ele in d.values():
-            if max<ele:
-                max = ele
-        print(max)
-        j = max
-        while len(res)<=k-1:
-            value = [i for i in d if d[i]==j]
-            for ele in value:
-                res.append(ele)
-            j = j-1
+# class Solution:
+#     def topKFrequent(self, arr: List[int], k: int) -> List[int]:
+#         d = {}
+#         res = []
+#         for ele in arr:
+#             d[ele] = d.get(ele,0)+1
+#         print(d)
+#         max = 0
+#         for ele in d.values():
+#             if max<ele:
+#                 max = ele
+#         print(max)
+#         j = max
+#         while len(res)<=k-1:
+#             value = [i for i in d if d[i]==j]
+#             for ele in value:
+#                 res.append(ele)
+#             j = j-1
+#
+#
+#         return res
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# # last loop explained
+#
+# class Solution:
+#     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+#         d = {}
+#         for ele in nums:
+#             d[ele] = d.get(ele, 0) + 1
+#
+#         max = 0
+#         for value in d.values():
+#             if max < value:
+#                 max = value
+#
+#         res = []
+#         j = max
+#
+#         while len(res) <= k - 1:
+#             for i in d.keys():
+#                 if d[i] == j:
+#                     res.append(i)
+#
+#             j = j - 1
+#         return res
+#
+#
+# # ideal solution
+
+nums = [1,1,1,1,7,7,9,9,9,5,5,5,5,5,5,5,5,5]
+
+def k_freq_ele(nums,k):
+    d = {}
+    freq = [[] for i in range(len(nums)+1)]
+
+    for ele in nums:
+        d[ele]=d.get(ele,0)+1
+
+    for n,c in d.items():
+        freq[c].append(n)
+
+    res=[]
+    for i in range(len(freq)-1,0,-1):
+        for n in freq[i]:
+            res.append(n)
+            if len(res)==k:
+                return res
+
+print(k_freq_ele(nums,k=2))
 
 
-        return res
 
+#leetcode
 
-
-
-
-
-
-
-
-
-
-
-
-# last loop explained
-
-class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        d = {}
-        for ele in nums:
-            d[ele] = d.get(ele, 0) + 1
-
-        max = 0
-        for value in d.values():
-            if max < value:
-                max = value
-
-        res = []
-        j = max
-
-        while len(res) <= k - 1:
-            for i in d.keys():
-                if d[i] == j:
-                    res.append(i)
-
-            j = j - 1
-        return res
-
-
-# using heaps 
+# class Solution:
+#     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+#         d = {}
+#         freq = [[] for i in range(len(nums)+1)]
+#
+#         for ele in nums:
+#             d[ele]=d.get(ele,0)+1
+#
+#         for n,c in d.items():
+#             freq[c].append(n)
+#
+#         res=[]
+#         for i in range(len(freq)-1,0,-1):
+#             for n in freq[i]:
+#                 res.append(n)
+#                 if len(res)==k:
+#                     return res
