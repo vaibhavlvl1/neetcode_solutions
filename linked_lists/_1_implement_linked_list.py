@@ -53,10 +53,10 @@ def reverse1(head):
 
 
 
-he = ll_input()
-printll(he)
-he2 = reverse1(he)
-printll(he2)
+# he = ll_input()
+# printll(he)
+# he2 = reverse1(he)
+# printll(he2)
 
 
 
